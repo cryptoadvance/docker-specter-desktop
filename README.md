@@ -1,10 +1,14 @@
 # Specter Desktop in a docker container
 
-[![Build on deploy](https://github.com/lncm/docker-specter-desktop/workflows/Docker%20build%20on%20tag/badge.svg)](https://github.com/lncm/docker-specter-desktop/actions?query=workflow%3A%22Docker+build+on+tag%22)
-![Version](https://img.shields.io/github/v/release/lncm/docker-specter-desktop?sort=semver) 
-[![Docker Pulls Count](https://img.shields.io/docker/pulls/lncm/specter-desktop.svg?style=flat)](https://hub.docker.com/r/lncm/specter-desktop)
+[![Build on deploy](https://github.com/cryptoadvance/docker-specter-desktop/workflows/Docker%20build%20on%20tag/badge.svg)](https://github.com/cryptoadvance/docker-specter-desktop/actions?query=workflow%3A%22Docker+build+on+tag%22)
+![Version](https://img.shields.io/github/v/release/cryptoadvance/docker-specter-desktop?sort=semver) 
+[![Docker Pulls Count](https://img.shields.io/docker/pulls/cryptoadvance/specter-desktop.svg?style=flat)](https://hub.docker.com/r/cryptoadvance/specter-desktop)
 
-[Specter Desktop](https://github.com/cryptoadvance/specter-desktop) by [cryptoadvance](https://cryptoadvance.io/) in a docker container.
+[Specter Desktop](https://github.com/cryptoadvance/specter-desktop) in a docker container.
+
+This is a fork from [Lightning Chiang Mai](https://github.com/lncm/docker-specter-desktop). Big shoutout to them!
+There might be slight differences and we try to follow the original repo. Ideally the images are the same but eventually:
+"Don't trust, verify". So we're building them ourself.
 
 ## Why?
 
@@ -20,7 +24,7 @@ docker build -t nolim1t/specter-desktop:v0.8.1 .
 
 ## Tags
 
-> **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/lncm/specter-desktop/tags
+> **NOTE:** For an always up-to-date list see: https://hub.docker.com/r/cryptoadvance/specter-desktop/tags
 
 * `latest` `v0.8.0` `v0.8.1`
 * `v0.6.1` `v0.7.0` `v0.7.1` `v0.7.2`
@@ -44,19 +48,19 @@ There are two ways you can run this
 ```bash
 # in HWI bridge mode (meaning you would like to run a bridge to HWI)
 # Also ensure that your username is permissioned for accessing the USB device. (group=plugdev) or use the --privileged switch
-docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.8.1 --hwibridge
+docker run --rm -v $HOME/.specter:/data/.specter cryptoadvance/specter-desktop:v0.8.1 --hwibridge
 
 # Get the Help to see options
-docker run --rm -v $HOME/.specter:/data/.specter lncm/specter-desktop:v0.8.1 --help
+docker run --rm -v $HOME/.specter:/data/.specter cryptoadvance/specter-desktop:v0.8.1 --help
 
 # Run in Daemon mode
-docker run --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.8.1 --host your.ip.address --daemon
+docker run --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin cryptoadvance/specter-desktop:v0.8.1 --host your.ip.address --daemon
 
 # Run in docker detached mode (so we can see the logs)
-docker run -d=true --name=specter-desktop --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin lncm/specter-desktop:v0.8.1 --host your.ip.address
+docker run -d=true --name=specter-desktop --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin cryptoadvance/specter-desktop:v0.8.1 --host your.ip.address
 
 # with flask env file in root (Replace --help with other stuff
-docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin -v $HOME/.flaskenv:/.flaskenv lncm/specter-desktop:v0.8.1 --help
+docker run --name=specter-desktop --network=host --rm -v $HOME/.specter:/data/.specter -v $HOME/.bitcoin:/data/.bitcoin -v $HOME/.flaskenv:/.flaskenv cryptoadvance/specter-desktop:v0.8.1 --help
 ```
 
 ### Docker compose
@@ -65,7 +69,7 @@ This is a bit complex but the idea is to make sure there is a bitcoind installat
 
 I also used host networking for ease of use, and also added ```privileged``` for  further ease of use in case your user can't access the usb socket if you would like to run as a bridge to HWI or use the ```--hwibridge``` flag
 
-Or you can use the sample docker-compose in HWIBridge mode [here](https://github.com/lncm/docker-specter-desktop/blob/master/docker-compose.yml.hwibridge)
+Or you can use the sample docker-compose in HWIBridge mode [here](https://github.com/cryptoadvance/docker-specter-desktop/blob/master/docker-compose.yml.hwibridge)
 
 ```yaml
 version: '3.8'
@@ -102,5 +106,5 @@ services:
 
 ## Troubleshooting
 
-Please ensure that you have the correct [udev rules](https://github.com/lncm/docker-specter-desktop/blob/master/udevrules.md) installed
+Please ensure that you have the correct [udev rules](https://github.com/cryptoadvance/docker-specter-desktop/blob/master/udevrules.md) installed
 

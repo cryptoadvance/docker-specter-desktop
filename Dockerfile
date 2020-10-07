@@ -34,7 +34,7 @@ FROM python:3.8.5-slim-buster as final
 ARG USER
 ARG DIR
 
-LABEL maintainer="nolim1t (hello@nolim1t.co)"
+LABEL maintainer="k9ert (k9ert@pm.me)"
 
 RUN apt update && apt install -y libusb-1.0-0-dev libudev-dev
 
